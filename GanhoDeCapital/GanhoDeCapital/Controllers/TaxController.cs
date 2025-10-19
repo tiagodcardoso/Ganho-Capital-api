@@ -75,7 +75,7 @@ public class TaxController : ControllerBase
         {
             status = "Healthy",
             timestamp = DateTime.UtcNow,
-            service = "Capital Gains Tax API"
+            service = "Ganho de Capital API"
         });
     }
 }
