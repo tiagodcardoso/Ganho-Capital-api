@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GanhoDeCapital.Core", "Ganh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GanhoDeCapital.Infra", "GanhoDeCapital.Infra\GanhoDeCapital.Infra.csproj", "{09DCE014-244B-42EF-B8AD-8CAD5CC82841}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C9B5E36E-CAE5-4A1C-B6AC-E148F228D542}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GanhoDeCapital.Tests", "..\..\Ganho-Capital-api1\GanhoDeCapital\CapitalGainsTax.Tests\GanhoDeCapital.Tests.csproj", "{6EC6098C-6A53-4753-8E65-F25B27C7A018}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,8 +31,15 @@ Global
 		{09DCE014-244B-42EF-B8AD-8CAD5CC82841}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09DCE014-244B-42EF-B8AD-8CAD5CC82841}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09DCE014-244B-42EF-B8AD-8CAD5CC82841}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EC6098C-6A53-4753-8E65-F25B27C7A018}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EC6098C-6A53-4753-8E65-F25B27C7A018}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EC6098C-6A53-4753-8E65-F25B27C7A018}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EC6098C-6A53-4753-8E65-F25B27C7A018}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6EC6098C-6A53-4753-8E65-F25B27C7A018} = {C9B5E36E-CAE5-4A1C-B6AC-E148F228D542}
 	EndGlobalSection
 EndGlobal
