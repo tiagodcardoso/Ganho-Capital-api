@@ -43,7 +43,6 @@ namespace GanhoDeCapital.Core.Services
                 return false;
             }
 
-            // Verifica se existe pelo menos uma operação de venda
             bool hasSellOperation = transactions.Any(t => t.Operation == OperationType.Sell);
 
             if (!hasSellOperation)
@@ -77,17 +76,15 @@ namespace GanhoDeCapital.Core.Services
 
             state.TotalShares -= transaction.Quantity;
 
-            // Verifica isenção para vendas <= R$ 20.000
+            
             if (saleValue <= ExemptionThreshold)
-            {
-                // Mesmo isento, o lucro/prejuízo afeta o acumulado
+            {                
                 if (profitOrLoss < 0)
                 {
                     state.AccumulatedLoss += Math.Abs(profitOrLoss);
                 }
                 else
-                {
-                    // Deduz prejuízo acumulado do lucro
+                {                    
                     if (state.AccumulatedLoss > 0)
                     {
                         if (profitOrLoss >= state.AccumulatedLoss)
@@ -102,17 +99,15 @@ namespace GanhoDeCapital.Core.Services
                         }
                     }
                 }
-                return 0; // Isento de imposto
+                return 0;
             }
-
-            // Processa prejuízo
+                        
             if (profitOrLoss < 0)
             {
                 state.AccumulatedLoss += Math.Abs(profitOrLoss);
                 return 0;
             }
 
-            // Deduz prejuízo acumulado do lucro
             decimal taxableProfit = profitOrLoss;
 
             if (state.AccumulatedLoss > 0)
@@ -129,7 +124,6 @@ namespace GanhoDeCapital.Core.Services
                 }
             }
 
-            // Calcula imposto sobre lucro tributável
             return taxableProfit * TaxRate;
         }       
 

@@ -45,15 +45,13 @@ namespace GanhoDeCapital.Core.Services
                 ClientId = request.ClientId
             };
 
-            // Verifica erro de enriquecimento
             if (!request.ClientId.HasValue)
             {
                 response.Status = OperationStatus.EnrichmentError;
                 await SaveOperationAsync(request, response);
                 return response;
             }
-
-            // Busca dados do cliente
+                        
             var client = await _clientService.GetClientAsync(request.ClientId.Value);
 
             if (client == null)
@@ -63,11 +61,9 @@ namespace GanhoDeCapital.Core.Services
                 return response;
             }
 
-            // Enriquece com dados do cliente
             response.ClientName = client.ClientName;
             response.ClientCpf = client.ClientCpf;
-
-            // Converte DTOs para entidades
+                        
             var transactions = request.Operations
                 .Select(op => new Transaction
                 {
@@ -76,22 +72,18 @@ namespace GanhoDeCapital.Core.Services
                     Quantity = op.Quantity
                 })
                 .ToList();
-
-            // Calcula imposto
+            
             decimal tax = _taxCalculationService.CalculateTax(transactions, out string status);
 
             response.Tax = status == OperationStatus.CalculatedSuccessfully ? tax : null;
             response.Status = status;
 
-            // Salva no repositório
             await SaveOperationAsync(request, response);
 
             return response;
         }
 
-        private async Task SaveOperationAsync(
-            OperationRequest request,
-            OperationResponse response)
+        private async Task SaveOperationAsync(OperationRequest request,OperationResponse response)
         {
             var operation = new Operation
             {

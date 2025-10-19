@@ -39,8 +39,7 @@ public class TaxController : ControllerBase
             _logger.LogInformation(
                 "Recebida requisição para processar {Count} operações",
                 requests?.Count ?? 0);
-
-            // Validação
+            
             var validationErrors = _validator.Validate(requests);
             if (validationErrors.Any())
             {
@@ -48,7 +47,6 @@ public class TaxController : ControllerBase
                 return BadRequest(new { errors = validationErrors });
             }
 
-            // Processamento
             var responses = await _processTaxService.ProcessOperationsAsync(requests);
 
             _logger.LogInformation(
